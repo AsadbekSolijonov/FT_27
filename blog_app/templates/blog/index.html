@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% for blog in blogs %}
+        <h1 class="title">{{ blog.title }}</h1>
+        <div class="content-body">
+            <pre>{{ blog.created }}</pre>
+            <p>{{ blog.body }}</p>
+            <pre>{{ blog.body | wordcount }} words</pre>
+        </div>
+    {% endfor %}
+</body>
+</html>

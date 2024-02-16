@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.title {
+    background-color: green;
+    color: white;
+    padding: 10px;
+}
+
+.content-body{
+    background-color: bisque;
+    padding: 20px;
+}
