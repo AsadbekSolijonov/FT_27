@@ -6,18 +6,41 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Title -->
     <title>Document</title>
+
+    <!-- <link rel="stylesheet" href="css/swiper-bundle.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
     <!-- Local CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    {% for blog in blogs %}
-        <h1 class="title" style="display: flex; justify-content: start; align-items: center;"> <img style="width: 60px; height: 60px; object-fit: cover; object-position: center; border-radius: 50%;" src="{{ blog.image.url }}" alt="rasm"> &nbsp;{{ blog.title }}</h1>
-        <div class="content-body">
-            <pre>{{ blog.created }}</pre>
-            <p>{{ blog.body }}</p>
-            <pre>{{ blog.body | wordcount }} words</pre>
-        </div>
-    {% endfor %}
+<section class="container">
+    <div class="swiper-wrapper d-flex-wrap">
+        {% for blog in blogs %}
+            <!-- CARD START -->
+            <article class="card__article swiper-slide">
+                <div class="card__image">
+                    <img src="{{ blog.image.url }}" alt="image" class="card__img">
+                    <div class="card__shadow"></div>
+                </div>
+                <div class="card__data">
+                    <h3 class="card__name">{{ blog.title | truncatewords:2 }}</h3>
+                    <p class="card__description">
+                        {{ blog.body | truncatewords:6 }}
+                    </p>
+                    <a href="#" class="card__button">View More</a>
+                </div>
+            </article>
+            <!-- CARD END -->
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 </html>
