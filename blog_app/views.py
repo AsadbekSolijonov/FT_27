@@ -1,7 +1,5 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from blog_app.models import Blog  # new
-import random
-import datetime
 
 
 # Create your views here.

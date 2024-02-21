@@ -47,7 +47,6 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .card__container {
@@ -65,6 +64,8 @@ img {
   border-radius: 1.25rem;
   overflow: hidden;
   margin-left: 30px;
+  margin-bottom: 30px;
+
 }
 
 .card__image {
@@ -168,4 +169,13 @@ img {
 
 .swiper-slide {
   height: 70%;
+}
+
+.bg-purple {
+  background-color: var(--container-color);
+  color: white;
+}
+
+.text-muted {
+    color: rgba(255, 255, 255, 0.62) !important;
 }
