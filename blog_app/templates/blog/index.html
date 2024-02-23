@@ -1,7 +1,6 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<section class="container">
     <div class="swiper-wrapper d-flex-wrap">
         {% for blog in blogs %}
             <!-- CARD START -->
@@ -13,14 +12,12 @@
                 <div class="card__data">
                     <h3 class="card__name">{{ blog.title | truncatewords:2 }}</h3>
                     <p class="card__description">
-                        {{ blog.body | truncatewords:6 }}
+                        {{ blog.body | truncatewords:4 }}
                     </p>
-                    <a href="#" class="card__button">View More</a>
+                    <a href="{% url 'blog_detail' blog.id %}" class="card__button">View More</a>
                 </div>
             </article>
             <!-- CARD END -->
         {% endfor %}
     </div>
-</section>
-
 {% endblock %}
