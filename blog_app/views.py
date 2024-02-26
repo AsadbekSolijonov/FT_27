@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from blog_app.models import Blog  # new
 
@@ -6,8 +7,12 @@ from blog_app.models import Blog  # new
 def index(request):
     blogs = Blog.objects.all().order_by('-created')  # new
 
+    paginator = Paginator(blogs, 6)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        "blogs": blogs
+        "blogs": page_obj
     }
     return render(request, 'blog/index.html', context=context)
 

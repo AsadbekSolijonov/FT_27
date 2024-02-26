@@ -4,7 +4,7 @@
     <div class="row mb-5">
         <div class="col text-end">
             <!-- Left arrow-square -->
-            <i class="bi bi-arrow-left-square-fill"></i>
+            <a style="color: white" href="{% url 'index' %}"><i class="bi bi-arrow-left-square-fill"></i></a>
         </div>
         <div class="col-8">
             <div class="card mb-3 text-dark" style="max-width: 1200px;">
@@ -16,15 +16,31 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ blog.title }}</h5>
                             <p class="card-text">{{ blog.body }}</p>
-                            <p class="card-text"><small class="text-danger">{{ blog.updated | timesince }} ago</small></p>
+                            <p class="card-text"><small class="text-danger">{{ blog.updated | timesince }} ago</small>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Pagination start-->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Pagination end-->
+
         </div>
         <div class="col">
-            <!-- Right arrow-square -->
-            <i class="bi bi-arrow-right-square-fill"></i>
+            Column 3
         </div>
     </div>
 {% endblock %}
