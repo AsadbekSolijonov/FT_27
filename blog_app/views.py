@@ -7,7 +7,7 @@ from blog_app.models import Blog  # new
 def index(request):
     blogs = Blog.objects.all().order_by('-created')  # new
 
-    paginator = Paginator(blogs, 6)
+    paginator = Paginator(blogs, 4)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
@@ -19,7 +19,13 @@ def index(request):
 
 def blog_detail(request, pk):
     blog = get_object_or_404(Blog, id=pk)
+    next_article = Blog.objects.filter(pk__gt=pk).order_by('pk').first()
+    previous_article = Blog.objects.filter(pk__lt=pk).order_by('-pk').first()
+
     context = {
-        "blog": blog
+        "blog": blog,
+        'next_article': next_article,
+        'previous_article': previous_article
     }
     return render(request, 'blog/detail.html', context=context)
+
