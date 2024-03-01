@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog_app.models import Blog
+from blog_app.models import Blog, Comment
 
 
 # Register your models here.
@@ -30,3 +30,7 @@ class BlogAdmin(admin.ModelAdmin):
     def updated_time(self, obj):
         return obj.created.strftime('%H:%M')
 
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'blog', 'message', 'created', 'updated')

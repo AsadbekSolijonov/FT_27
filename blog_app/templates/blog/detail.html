@@ -2,7 +2,7 @@
 {# blog detail start #}
 {% block content_detail %}
     <div class="row mb-5">
-        <div class="col text-end">
+        <div class="col-1 text-end">
             <!-- Left arrow-square -->
             <a style="color: white" href="{% url 'index' %}"><i class="bi bi-arrow-left-square-fill"></i></a>
         </div>
@@ -22,9 +22,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-3">
             <!-- Pagination start-->
             <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
+                <ul class="pagination justify-content-start">
                     <li class="page-item ">
                         {% if previous_article %}
                             <a class="page-link" href="{% url 'blog_detail' previous_article.pk %}">Previous</a>
@@ -39,9 +41,14 @@
             </nav>
             <!-- Pagination end-->
 
-        </div>
-        <div class="col">
-            Column 3
+            <!-- Comment -->
+            <form action="{% url 'blog_detail' blog.id %}" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            </form>
+            <!-- /Comment -->
+
         </div>
     </div>
 {% endblock %}
