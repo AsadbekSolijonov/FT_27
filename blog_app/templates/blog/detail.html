@@ -22,6 +22,31 @@
                     </div>
                 </div>
             </div>
+            <!-- Comments -->
+            <p>
+                <button class="btn btn-light position-relative" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="bi bi-chat-dots-fill text-dark"></i> Comments
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{ comments.count }}
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+                {% if comments %}
+                    {% for comment in comments %}
+                        <div class="card card-body text-dark mb-2">
+                            {{ comment.user }}
+                            <hr>
+                            {{ comment.message }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <span>No comment!</span>
+                {% endif %}
+            </div>
+            <!-- /Comments -->
         </div>
         <div class="col-3">
             <!-- Pagination start-->

@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 
 from blog_app.forms import CommentForm
-from blog_app.models import Blog  # new
+from blog_app.models import Blog, Comment  # new
 
 
 # Create your views here.
@@ -23,6 +23,7 @@ def blog_detail(request, pk):
     blog = get_object_or_404(Blog, id=pk)
     next_article = Blog.objects.filter(pk__gt=pk).order_by('pk').first()
     previous_article = Blog.objects.filter(pk__lt=pk).order_by('-pk').first()
+    comments = Comment.objects.filter(blog_id=pk).order_by('-created')  # new
 
     # Forms connection and save to database
     if request.method == 'POST':
@@ -31,7 +32,7 @@ def blog_detail(request, pk):
             comment = form.save(commit=False)
             comment.blog = blog
             comment.save()
-            return redirect('index')
+            return redirect('blog_detail', pk)  # new
     else:
         form = CommentForm()
 
@@ -39,6 +40,8 @@ def blog_detail(request, pk):
         "blog": blog,
         'next_article': next_article,
         'previous_article': previous_article,
-        'form': form
+        'form': form,
+        'comments': comments
+
     }
     return render(request, 'blog/detail.html', context=context)
