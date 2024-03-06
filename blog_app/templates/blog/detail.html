@@ -6,7 +6,7 @@
             <!-- Left arrow-square -->
             <a style="color: white" href="{% url 'index' %}"><i class="bi bi-arrow-left-square-fill"></i></a>
         </div>
-        <div class="col-8">
+        <div class="col-11 col-sm-11 col-md-11 col-lg-8 col-xl-8 col-xxl-8">
             <div class="card mb-3 text-dark" style="max-width: 1200px;">
                 <div class="row g-0">
                     <div class="col-md-4">
@@ -22,6 +22,34 @@
                     </div>
                 </div>
             </div>
+            <div class="d-inline d-lg-none d-xl-none d-xxl-none">
+                <!-- Pagination -->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-start">
+                        <li class="page-item ">
+                            {% if previous_article %}
+                                <a class="page-link" href="{% url 'blog_detail' previous_article.pk %}">Previous</a>
+                            {% endif %}
+                        </li>
+                        <li class="page-item">
+                            {% if next_article %}
+                                <a class="page-link" href="{% url 'blog_detail' next_article.id %}">Next</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /Pagination -->
+
+                <!-- Write Comment -->
+                <form action="{% url 'blog_detail' blog.id %}" method="POST">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit" class="btn btn-primary my-2">Submit</button>
+                </form>
+                <!-- /Write Comment -->
+            </div>
+
+
             <!-- Comments -->
             <p>
                 <button class="btn btn-light position-relative" type="button" data-bs-toggle="collapse"
@@ -48,7 +76,7 @@
             </div>
             <!-- /Comments -->
         </div>
-        <div class="col-3">
+        <div class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline d-xxl-inline  col-lg-3 col-xl-3 col-xxl-3 ">
             <!-- Pagination start-->
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-start">
